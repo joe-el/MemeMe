@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		573B8DD527B65F4100DCD05E /* BottomTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573B8DD427B65F4100DCD05E /* BottomTextFieldDelegate.swift */; };
 		573B8DD727B65FFF00DCD05E /* Meme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 573B8DD627B65FFF00DCD05E /* Meme.swift */; };
+		573B8DE127B685F400DCD05E /* Jurta-Sans.otf in Resources */ = {isa = PBXBuildFile; fileRef = 573B8DE027B685F400DCD05E /* Jurta-Sans.otf */; };
 		5751C6E127B55490003C6D44 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751C6E027B55490003C6D44 /* AppDelegate.swift */; };
 		5751C6E327B55490003C6D44 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751C6E227B55490003C6D44 /* SceneDelegate.swift */; };
 		5751C6E527B55490003C6D44 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5751C6E427B55490003C6D44 /* ViewController.swift */; };
@@ -20,6 +21,7 @@
 /* Begin PBXFileReference section */
 		573B8DD427B65F4100DCD05E /* BottomTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomTextFieldDelegate.swift; sourceTree = "<group>"; };
 		573B8DD627B65FFF00DCD05E /* Meme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Meme.swift; sourceTree = "<group>"; };
+		573B8DE027B685F400DCD05E /* Jurta-Sans.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Jurta-Sans.otf"; sourceTree = "<group>"; };
 		5751C6DD27B55490003C6D44 /* MemeMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemeMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5751C6E027B55490003C6D44 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5751C6E227B55490003C6D44 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -65,9 +67,10 @@
 				5751C6E427B55490003C6D44 /* ViewController.swift */,
 				573B8DD427B65F4100DCD05E /* BottomTextFieldDelegate.swift */,
 				573B8DD627B65FFF00DCD05E /* Meme.swift */,
+				573B8DE027B685F400DCD05E /* Jurta-Sans.otf */,
 				5751C6E627B55490003C6D44 /* Main.storyboard */,
-				5751C6E927B55494003C6D44 /* Assets.xcassets */,
 				5751C6EB27B55494003C6D44 /* LaunchScreen.storyboard */,
+				5751C6E927B55494003C6D44 /* Assets.xcassets */,
 				5751C6EE27B55494003C6D44 /* Info.plist */,
 			);
 			path = MemeMe;
@@ -132,6 +135,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5751C6ED27B55494003C6D44 /* LaunchScreen.storyboard in Resources */,
+				573B8DE127B685F400DCD05E /* Jurta-Sans.otf in Resources */,
 				5751C6EA27B55494003C6D44 /* Assets.xcassets in Resources */,
 				5751C6E827B55490003C6D44 /* Main.storyboard in Resources */,
 			);

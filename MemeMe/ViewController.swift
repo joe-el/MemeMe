@@ -16,8 +16,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         NSAttributedString.Key.strokeColor: UIColor.black,
         NSAttributedString.Key.foregroundColor: UIColor.white,
-        NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSAttributedString.Key.strokeWidth: -4.0
+        NSAttributedString.Key.font: UIFont(name: "Jurta", size: 60)!,
+        NSAttributedString.Key.strokeWidth: -1.0
     ]
     
     // Outlet:
@@ -48,6 +48,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Set the share button as disabled:
         showShareButton(false)
+        
+        // Tap anywhere on the screen to dismiss the keyboard:
+        let tap = UITapGestureRecognizer(target: self.view, action: #selector(UIView.endEditing))
+        view.addGestureRecognizer(tap)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -194,7 +198,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
         let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-        
+
         // Show toolbar and navbar:
         hideNavAndToolBars(false)
         
