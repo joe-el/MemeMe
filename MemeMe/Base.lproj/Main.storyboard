@@ -50,9 +50,7 @@
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem style="plain" systemItem="flexibleSpace" id="Fqr-NV-7IG"/>
-                                    <barButtonItem id="w56-Di-Ova" userLabel="Photo Picker">
-                                        <imageReference key="image" image="photo" catalog="system" symbolScale="large"/>
-                                        <imageReference key="landscapeImage" image="photo" catalog="system" symbolScale="large"/>
+                                    <barButtonItem title="Album" id="w56-Di-Ova" userLabel="Photo Picker">
                                         <connections>
                                             <action selector="pickAnImage:" destination="BYZ-38-t0r" id="n1g-U0-w9e"/>
                                         </connections>
@@ -64,13 +62,13 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="730"/>
                             </imageView>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hTB-YD-XK3">
-                                <rect key="frame" x="107" y="163" width="200" height="34"/>
+                                <rect key="frame" x="57" y="123" width="300" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="j8w-0j-xke">
-                                <rect key="frame" x="107" y="723" width="200" height="34"/>
+                                <rect key="frame" x="57" y="753" width="300" height="34"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -85,10 +83,10 @@
                             <constraint firstItem="cET-3u-ffe" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="DQh-oB-cAn"/>
                             <constraint firstItem="VoC-qV-yvz" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="JEZ-vl-hJp"/>
                             <constraint firstItem="hTB-YD-XK3" firstAttribute="leading" secondItem="j8w-0j-xke" secondAttribute="leading" id="Kk7-8L-oZP"/>
-                            <constraint firstItem="VoC-qV-yvz" firstAttribute="top" secondItem="j8w-0j-xke" secondAttribute="bottom" constant="61" id="LP0-ks-ddi"/>
+                            <constraint firstItem="VoC-qV-yvz" firstAttribute="top" secondItem="j8w-0j-xke" secondAttribute="bottom" constant="31" id="LP0-ks-ddi"/>
                             <constraint firstItem="cET-3u-ffe" firstAttribute="trailing" secondItem="Q48-Xu-QXy" secondAttribute="trailing" id="QzI-yb-Vz4"/>
-                            <constraint firstItem="hTB-YD-XK3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="107" id="ZCf-ba-FWN"/>
-                            <constraint firstItem="hTB-YD-XK3" firstAttribute="top" secondItem="cET-3u-ffe" secondAttribute="bottom" constant="75" id="b1M-KQ-tIq"/>
+                            <constraint firstItem="hTB-YD-XK3" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="57" id="ZCf-ba-FWN"/>
+                            <constraint firstItem="hTB-YD-XK3" firstAttribute="top" secondItem="cET-3u-ffe" secondAttribute="bottom" constant="35" id="b1M-KQ-tIq"/>
                             <constraint firstItem="Q48-Xu-QXy" firstAttribute="leading" secondItem="VoC-qV-yvz" secondAttribute="leading" id="gUF-UH-n9a"/>
                             <constraint firstItem="cET-3u-ffe" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="mDr-kB-FnI"/>
                             <constraint firstItem="Q48-Xu-QXy" firstAttribute="trailing" secondItem="VoC-qV-yvz" secondAttribute="trailing" id="rMM-B3-Rf5"/>
@@ -115,7 +113,6 @@
     </scenes>
     <resources>
         <image name="camera" catalog="system" width="128" height="94"/>
-        <image name="photo" catalog="system" width="128" height="93"/>
         <image name="square.and.arrow.up" catalog="system" width="115" height="128"/>
     </resources>
 </document>

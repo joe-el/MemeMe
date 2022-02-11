@@ -300,6 +300,8 @@
 				DEVELOPMENT_TEAM = MYK9549KKA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MemeMe/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Require Access To Your Camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Require Access To Your Photo Album";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -310,7 +312,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = TempusMachina.MemeMe;
+				PRODUCT_BUNDLE_IDENTIFIER = TempusMachina.memeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -328,6 +330,8 @@
 				DEVELOPMENT_TEAM = MYK9549KKA;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = MemeMe/Info.plist;
+				INFOPLIST_KEY_NSCameraUsageDescription = "Require Access To Your Camera";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Require Access To Your Photo Album";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -338,7 +342,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = TempusMachina.MemeMe;
+				PRODUCT_BUNDLE_IDENTIFIER = TempusMachina.memeMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

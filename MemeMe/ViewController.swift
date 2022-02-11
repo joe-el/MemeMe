@@ -33,8 +33,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Life Cycle:
         override func viewDidLoad() {
             super.viewDidLoad()
-            // Do any additional setup after loading the view.
-           
             // Text settings:
             topTextField.defaultTextAttributes = memeTextAttributes
             bottomTextField.defaultTextAttributes = memeTextAttributes
@@ -43,10 +41,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             topTextField.text = "TOP"
             bottomTextField.text = "BOTTOM"
             
-            // Set Up Delegates:
+            // Set up delegates:
             topTextField.delegate = self
             bottomTextField.delegate = self.bottomTextDelegate
             
+            // Set the share button as disabled:
             self.sharingIsCaring.isEnabled = false
         }
         
@@ -65,12 +64,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             unsubscribeFromKeyboardNotifications()
         }
         
-        // Keyboard notifications—subscribing to receive information throughout a program:
+        // Setting uo subscribtion for receiving information about the keyboard:
         func subscribeToKeyboardNotifications() {
-            /*
-             * Notification class provides a way to announce information throughout a program, across classes. Each notification has three
-             * properties: a name, an optional userInfo dictionary, and an optional object.
-             */
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
             
             NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
@@ -80,7 +75,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
         }
         
-        // Observer methods which does the automatic scrolling when keyboard appears and de-scrolling:
+        // Observer methods which does the automatic scrolling when keyboard appears and de-scrolling when keyboard disappears:
         @objc func keyboardWillShow(_ notification: Notification) {
             if bottomTextField.isEditing, view.frame.origin.y == 0  {
                 view.frame.origin.y = -getKeyboardHeight(notification)
@@ -118,15 +113,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Image View Delegates:
         func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-            /*
-             * Read the docs thoroughly!!! It said -info- is a dictionary containing the original image and the
-             * edited image and continues on telling me where to find the keys for that dictionary which is
-             * .originalImage, the dot is needed to get access and of course force cast the value into a UIImage
-             * with as! command.
-             * It may be easiest to remember the pattern for these operators in Swift as: ! implies “this might
-             * trap,” while ? indicates “this might be nil.”
-             */
-            //let pickedImage = info[.originalImage] as! UIImage
             if let chosenImage = info[.originalImage] as? UIImage {
                 imageView.image = chosenImage
             }
@@ -139,7 +125,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Action:
         @IBAction func caputureCameraImage(_ sender: Any) {
-            // Set share button as on
+            // Set share button as enabled:
             self.sharingIsCaring.isEnabled = true
             
             // Set the delegate:
@@ -149,7 +135,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     
         @IBAction func pickAnImage(_ sender: Any) {
-            // Set share button as on
+            // Set share button as enabled:
             self.sharingIsCaring.isEnabled = true
             
             // Set the delegate:
@@ -176,7 +162,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
         @IBAction func cancelButtonPressed(_ sender: AnyObject) {
-            // Set share button as off
+            // Set share button as disabled:
             self.sharingIsCaring.isEnabled = false
             
             if let topResults = topTextField.text {
@@ -198,17 +184,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
          * textfields in this case) into a UIImage object.
          */
         func generateMemedImage()-> UIImage {
-            // TODO: Hide toolbar and navbar
+            // Hide toolbar and navbar:
             navBar.isHidden = true
             toolBar.isHidden = true
             
-            // Render view to an image
+            // Render view to an image:
             UIGraphicsBeginImageContext(self.view.frame.size)
             view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
             let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
             UIGraphicsEndImageContext()
             
-            // TODO: Show toolbar and navbar
+            // Show toolbar and navbar:
             navBar.isHidden = false
             toolBar.isHidden = false
             
@@ -217,7 +203,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Initialize a Meme model object:
         func save() {
-                // Create the meme
+                // Create the meme object:
                 _ = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
         }
         

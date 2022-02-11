@@ -7,7 +7,7 @@
 
 import UIKit
 
-// MemeMe Structure:
+// MemeMe structure for saving the memed image:
 struct Meme {
     let topText: String
     let bottomText: String

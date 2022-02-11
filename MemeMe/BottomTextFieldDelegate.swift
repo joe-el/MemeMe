@@ -10,11 +10,7 @@ import UIKit
 
 class BottomTextFieldDelegate: NSObject, UITextFieldDelegate {
     
-    // Properties:
-    
-    // Life Cycle:
-    
-    // Text Field Delegates:
+    // Text field delegates:
     func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
         return true
     }
