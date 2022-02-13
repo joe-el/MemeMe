@@ -11,7 +11,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Properties:
     let imagePicker = UIImagePickerController()
-    let cameraController = UIImagePickerController()
     let bottomTextDelegate = BottomTextFieldDelegate()
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         .strokeColor: UIColor.black,
@@ -127,9 +126,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         showShareButton(true)
         
         // Set the delegate:
-        cameraController.delegate = self
-        cameraController.sourceType = .camera
-        present(cameraController, animated: true, completion: nil)
+        imagePicker.delegate = self
+        
+        // Setting up the image source, and presenting it:
+        presentPickerViewController(source: .camera)
     }
 
     @IBAction func pickAnImage(_ sender: Any) {
@@ -138,8 +138,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         // Set the delegate:
         imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
+        
+        // Setting up the image source, and presenting it:
+        presentPickerViewController(source: .photoLibrary)
+    }
+    
+    func presentPickerViewController(source: UIImagePickerController.SourceType) {
+        // Set up the source:
+        imagePicker.sourceType = source
         present(imagePicker, animated: true, completion: nil)
+        
     }
     
     @IBAction func shareMe(_ sender: Any) {
