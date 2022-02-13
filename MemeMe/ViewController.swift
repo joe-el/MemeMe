@@ -14,10 +14,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let cameraController = UIImagePickerController()
     let bottomTextDelegate = BottomTextFieldDelegate()
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
-        NSAttributedString.Key.strokeColor: UIColor.black,
-        NSAttributedString.Key.foregroundColor: UIColor.white,
-        NSAttributedString.Key.font: UIFont(name: "Jurta", size: 60)!,
-        NSAttributedString.Key.strokeWidth: -1.0
+        .strokeColor: UIColor.black,
+        .foregroundColor: UIColor.white,
+        .font: UIFont(name: "Jurta", size: 60)!,
+        .strokeWidth: -1.0
     ]
     
     // Outlet:
@@ -70,7 +70,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         unsubscribeFromKeyboardNotifications()
     }
     
-    // Setting uo subscribtion for receiving information about the keyboard:
+    // Subscription for receiving information about the keyboard:
     func subscribeToKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
         
@@ -185,10 +185,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView.image = nil
     }
     
-    /*
-     * Combining image and text-grabing an image context and let it render the view hierarchy(image &
-     * textfields in this case) into a UIImage object.
-     */
+    // Setup initial text for both textFields:
+    setupTextField(_ textField, text: String) {
+        
+    }
+    
+    // Combining an image with texts:
     func generateMemedImage()-> UIImage {
         // Hide toolbar and navbar:
         hideNavAndToolBars(true)
