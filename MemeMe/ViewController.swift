@@ -34,17 +34,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Text settings:
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .center
-        bottomTextField.textAlignment = .center
-        topTextField.text = "TOP"
-        bottomTextField.text = "BOTTOM"
-        
-        // Set up delegates:
-        topTextField.delegate = self
-        bottomTextField.delegate = self.bottomTextDelegate
+        // Setting up the text fields:
+        setupTextField(topTextField, text: "TOP")
+        setupTextField(bottomTextField, text: "BOTTOM")
         
         // Set the share button as disabled:
         showShareButton(false)
@@ -187,17 +179,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Setup initial attributes, texts, and delegates for both textFields:
     func setupTextField(_ textField: UITextField, text: String) {
-        topTextField.defaultTextAttributes = memeTextAttributes
-        bottomTextField.defaultTextAttributes = memeTextAttributes
-        topTextField.textAlignment = .center
-        bottomTextField.textAlignment = .center
-        
+        // Text settings:
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.defaultTextAttributes = memeTextAttributes
+        textField.textAlignment = .center
+        textField.textAlignment = .center
+        // Initial text:
         textField.text = text
         textField.text = text
-        
         // Set up delegates:
-        topTextField.delegate = self
-        bottomTextField.delegate = self.bottomTextDelegate
+        textField.delegate = self
+        textField.delegate = self.bottomTextDelegate
     }
     
     // Combining an image with texts:
