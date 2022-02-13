@@ -185,9 +185,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         imageView.image = nil
     }
     
-    // Setup initial text for both textFields:
-    setupTextField(_ textField, text: String) {
+    // Setup initial attributes, texts, and delegates for both textFields:
+    func setupTextField(_ textField: UITextField, text: String) {
+        topTextField.defaultTextAttributes = memeTextAttributes
+        bottomTextField.defaultTextAttributes = memeTextAttributes
+        topTextField.textAlignment = .center
+        bottomTextField.textAlignment = .center
         
+        textField.text = text
+        textField.text = text
+        
+        // Set up delegates:
+        topTextField.delegate = self
+        bottomTextField.delegate = self.bottomTextDelegate
     }
     
     // Combining an image with texts:
