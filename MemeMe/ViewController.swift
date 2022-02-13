@@ -75,8 +75,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Observer methods which does the automatic scrolling when keyboard appears and de-scrolling when keyboard disappears:
     @objc func keyboardWillShow(_ notification: Notification) {
-        if bottomTextField.isEditing, view.frame.origin.y == 0  {
-            view.frame.origin.y = -getKeyboardHeight(notification)
+        if bottomTextField.isFirstResponder, view.frame.origin.y == 0  {
+            view.frame.origin.y -= getKeyboardHeight(notification)
         }
     }
     
@@ -181,15 +181,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func setupTextField(_ textField: UITextField, text: String) {
         // Text settings:
         textField.defaultTextAttributes = memeTextAttributes
-        textField.defaultTextAttributes = memeTextAttributes
-        textField.textAlignment = .center
         textField.textAlignment = .center
         // Initial text:
         textField.text = text
-        textField.text = text
         // Set up delegates:
-        textField.delegate = self
-        textField.delegate = self.bottomTextDelegate
+        if textField == topTextField {
+            textField.delegate = self
+        } else {
+            textField.delegate = self.bottomTextDelegate
+        }
     }
     
     // Combining an image with texts:
