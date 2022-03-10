@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
+class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
     
     // Properties:
     let imagePicker = UIImagePickerController()
@@ -15,17 +15,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         .strokeColor: UIColor.black,
         .foregroundColor: UIColor.white,
-        .font: UIFont(name: "Jurta", size: 60)!,
+        .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
         .strokeWidth: -1.0
     ]
     
     // Outlet:
-    @IBOutlet weak var navBar: UINavigationBar!
-    @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var sharingIsCaring: UIBarButtonItem!
     @IBOutlet weak var cancelView: UIBarButtonItem!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var cameraButton: UIBarButtonItem!
+    @IBOutlet weak var navBar: UINavigationBar!
+    @IBOutlet weak var toolBar: UIToolbar!
     @IBOutlet weak var topTextField: UITextField!
     @IBOutlet weak var bottomTextField: UITextField!
     
@@ -48,6 +48,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
+        // Hide the Tab Bar Controller:
+        self.tabBarController?.tabBar.isHidden = true
+        
         // Boolean check if camera is available on said device:
         cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
         
@@ -57,6 +60,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
+        // Show the Tab Bar Controller:
+        self.tabBarController?.tabBar.isHidden = false
+        
         // Unsubscribe to notifications:
         unsubscribeFromKeyboardNotifications()
     }
@@ -147,7 +153,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         // Set up the source:
         imagePicker.sourceType = source
         present(imagePicker, animated: true, completion: nil)
-        
     }
     
     @IBAction func shareMe(_ sender: Any) {
@@ -219,8 +224,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Initialize a Meme model object:
     func save() {
-            // Create the meme object:
-            _ = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+        // Create the meme object:
+        let meme = Meme(topText: topTextField.text!, bottomText: bottomTextField.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
+        
+        // Add it to the memes array on the Application Delegate:
+        let object = UIApplication.shared.delegate
+        let appDelegate = object as! AppDelegate
+        appDelegate.memes.append(meme)
     }
     
     // Enable or disable share button:
