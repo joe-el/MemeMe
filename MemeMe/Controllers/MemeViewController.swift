@@ -231,6 +231,9 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         let object = UIApplication.shared.delegate
         let appDelegate = object as! AppDelegate
         appDelegate.memes.append(meme)
+        
+        // Go back to sent memes view:
+        dismiss(animated: true, completion: nil)
     }
     
     // Enable or disable share button:

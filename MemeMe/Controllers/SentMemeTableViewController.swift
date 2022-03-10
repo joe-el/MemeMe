@@ -24,14 +24,6 @@ class SentMemeTableViewController: UITableViewController {
         tableView!.reloadData()
     }
     
-    func checkForEmptyMeme(_ : Bool) -> Bool {
-        if self.memes.count == 0 {
-            return true
-        } else {
-            return false
-        }
-    }
-    
     // UITableView Data Source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if self.memes.count == 0 {
@@ -57,10 +49,13 @@ class SentMemeTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
-        
-        detailController.serveMeme = self.memes[(indexPath as NSIndexPath).row]
-        
-        self.navigationController!.pushViewController(detailController, animated: true)
+        if self.memes.count != 0 {
+            let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+            
+            // I may need to assign an empty array or image if meme count is zero:
+            detailController.serveMeme = self.memes[(indexPath as NSIndexPath).row]
+            
+            self.navigationController!.pushViewController(detailController, animated: true)
+        }
     }
 }
