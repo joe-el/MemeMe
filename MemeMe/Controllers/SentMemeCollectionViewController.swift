@@ -34,25 +34,41 @@ class SentMemeCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let space:CGFloat = 3.0
+        let dimension = (view.frame.size.width - (2 * space)) / 3.0
+
+        flowLayout.minimumInteritemSpacing = space
+        flowLayout.minimumLineSpacing = space
+        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
+    }
+    
+    func memesToShow() -> Bool {
+        if self.memes.count == 0 {
+            return false
+        } else {
+            return true
+        }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if self.memes.count == 0 {
-            return 1
+        if memesToShow() {
+            return self.memes.count
         } else {
-            return self.memes.count;
+            return 1
         }
     }
     
     // Should return a custom cell, I’ll dequeue an instance of my cell class and populate it with data.
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellReuseIdentifier, for: indexPath) as! SentMemeCollectionViewCell
-        let memeStruct = self.memes[(indexPath as NSIndexPath).row]
-
-        // Set the memed image
-        cell.memedCellImageView?.image = memeStruct.memedImage
-
+        
+        if memesToShow() {
+            let memeStruct = self.memes[(indexPath as NSIndexPath).row]
+            // Set the memed image
+            cell.memedCellImageView?.image = memeStruct.memedImage
+            return cell
+        }
         return cell
     }
     
@@ -60,15 +76,15 @@ class SentMemeCollectionViewController: UICollectionViewController {
     // I’ll grab an instance of my detailViewController from the storyboard, populate the
     // detailViewController with the appropriate meme, and present it using navigation.
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath:IndexPath) {
+        if memesToShow() {
+            // Grab the DetailVC from Storyboard
+            let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
 
-        // Grab the DetailVC from Storyboard
-        let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
+            //Populate view controller with data from the selected item
+            detailController.serveMeme = memes[(indexPath as NSIndexPath).row]
 
-        //Populate view controller with data from the selected item
-        detailController.serveMeme = memes[(indexPath as NSIndexPath).row]
-
-        // Present the view controller using navigation
-        navigationController!.pushViewController(detailController, animated: true)
-
+            // Present the view controller using navigation
+            navigationController!.pushViewController(detailController, animated: true)
+        }
     }
 }
