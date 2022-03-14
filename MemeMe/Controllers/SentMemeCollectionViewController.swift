@@ -23,39 +23,44 @@ class SentMemeCollectionViewController: UICollectionViewController {
         let appDelegate = object as! AppDelegate
         return appDelegate.memes
     }
+    var noMemesToShow: Bool!
     
     // Outlets:
     @IBOutlet weak var flowLayout: UICollectionViewFlowLayout!
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        noMemesToShow = memes.isEmpty
         collectionView!.reloadData()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let space:CGFloat = 3.0
-        let dimension = (view.frame.size.width - (2 * space)) / 3.0
-
-        flowLayout.minimumInteritemSpacing = space
-        flowLayout.minimumLineSpacing = space
-        flowLayout.itemSize = CGSize(width: dimension, height: dimension)
     }
     
-    func memesToShow() -> Bool {
-        if self.memes.count == 0 {
-            return false
+    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+        if traitCollection.horizontalSizeClass == .compact {
+            let space:CGFloat = 3.0
+            let dimension = (view.frame.size.width - (2 * space)) / 3.0
+            // load slim view
+            flowLayout.minimumInteritemSpacing = space
+            flowLayout.minimumLineSpacing = space
+            flowLayout.itemSize = CGSize(width: dimension, height: dimension)
         } else {
-            return true
+            // load wide view
+            let space:CGFloat = 1.0
+            let dimension = (view.frame.size.width - (2 * space)) / 3.0
+            flowLayout.minimumInteritemSpacing = space
+            flowLayout.minimumLineSpacing = space
+            flowLayout.itemSize = CGSize(width: dimension, height: dimension)
         }
     }
     
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if memesToShow() {
-            return self.memes.count
-        } else {
+        if noMemesToShow {
             return 1
+        } else {
+            return self.memes.count
         }
     }
     
@@ -63,20 +68,28 @@ class SentMemeCollectionViewController: UICollectionViewController {
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: self.cellReuseIdentifier, for: indexPath) as! SentMemeCollectionViewCell
         
-        if memesToShow() {
+        if noMemesToShow {
+            let label: UILabel = UILabel(frame: CGRect(x: 0, y: 0, width: collectionView.frame.width, height: collectionView.frame.height))
+            label.numberOfLines = 2
+            label.textAlignment = .center
+            label.text = "Click on '+' to Add a Meme"
+            collectionView.backgroundView = label
+            return cell
+        } else {
+            collectionView.backgroundView = nil
             let memeStruct = self.memes[(indexPath as NSIndexPath).row]
             // Set the memed image
             cell.memedCellImageView?.image = memeStruct.memedImage
             return cell
         }
-        return cell
+
     }
     
     // Should present a detail view of the selected meme.
     // I’ll grab an instance of my detailViewController from the storyboard, populate the
     // detailViewController with the appropriate meme, and present it using navigation.
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath:IndexPath) {
-        if memesToShow() {
+        if !noMemesToShow {
             // Grab the DetailVC from Storyboard
             let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
 

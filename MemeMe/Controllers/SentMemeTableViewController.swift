@@ -17,50 +17,55 @@ class SentMemeTableViewController: UITableViewController {
         let appDelegate = object as! AppDelegate
         return appDelegate.memes
     }
+    var noMemesToShow: Bool!
     
     // Life Cycle:
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.estimatedRowHeight = tableView.rowHeight
+        tableView.rowHeight = UITableView.automaticDimension
+    }
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        noMemesToShow = memes.isEmpty
         tableView!.reloadData()
     }
     
-    func memesToShow() -> Bool {
-        if self.memes.count == 0 {
-            return false
-        } else {
-            return true
-        }
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
     }
     
     // UITableView Data Source
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if memesToShow() {
-            return self.memes.count
-        } else {
+        if noMemesToShow {
             return 1
+        } else {
+            return self.memes.count
         }
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell =  tableView.dequeueReusableCell(withIdentifier: self.cellReuseIdentifier)!
         
-        if memesToShow() {
+        if noMemesToShow {
+            cell.textLabel?.text = "Click on '+' to Add a Meme"
+        } else {
             let memeStruct = self.memes[(indexPath as NSIndexPath).row]
             // Set the lables and image
             cell.imageView?.image = memeStruct.memedImage
             //UIImage(named: memeStruct.memedImage)
             cell.textLabel?.text = "\(memeStruct.topText)...\(memeStruct.bottomText)"
-        } else {
-            cell.textLabel?.text = "Click on '+' to Add a Meme"
         }
+        
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if memesToShow() {
+        if !noMemesToShow {
             let detailController = self.storyboard!.instantiateViewController(withIdentifier: "MemeDetailViewController") as! MemeDetailViewController
             
-            // I may need to assign an empty array or image if meme count is zero:
             detailController.serveMeme = self.memes[(indexPath as NSIndexPath).row]
             
             self.navigationController!.pushViewController(detailController, animated: true)
