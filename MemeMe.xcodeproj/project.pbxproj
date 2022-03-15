@@ -72,8 +72,6 @@
 				57574C7A27D2241400239B6A /* Controllers */,
 				57574C7927D223CD00239B6A /* Views */,
 				57574C7827D2235200239B6A /* Model */,
-				573B8DD427B65F4100DCD05E /* BottomTextFieldDelegate.swift */,
-				573B8DD627B65FFF00DCD05E /* Meme.swift */,
 				5751C6E627B55490003C6D44 /* Main.storyboard */,
 				5751C6EB27B55494003C6D44 /* LaunchScreen.storyboard */,
 				5751C6E927B55494003C6D44 /* Assets.xcassets */,
@@ -85,6 +83,8 @@
 		57574C7827D2235200239B6A /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				573B8DD427B65F4100DCD05E /* BottomTextFieldDelegate.swift */,
+				573B8DD627B65FFF00DCD05E /* Meme.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";

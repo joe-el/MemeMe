@@ -188,6 +188,9 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         }
         // Discard any image in imageView:
         imageView.image = nil
+        
+        // Return to Sent Meme View:
+        dismiss(animated: true, completion: nil)
     }
     
     // Setup initial attributes, texts, and delegates for both textFields:
