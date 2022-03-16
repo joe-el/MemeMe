@@ -16,7 +16,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
         .strokeColor: UIColor.black,
         .foregroundColor: UIColor.white,
         .font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        .strokeWidth: -1.0
+        .strokeWidth: -3.5
     ]
     
     // Outlet:
@@ -76,12 +76,14 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     
     func unsubscribeFromKeyboardNotifications() {
         NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.removeObserver(self, name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
     // Observer methods which does the automatic scrolling when keyboard appears and de-scrolling when keyboard disappears:
     @objc func keyboardWillShow(_ notification: Notification) {
         if bottomTextField.isFirstResponder, view.frame.origin.y == 0  {
-            view.frame.origin.y -= getKeyboardHeight(notification)
+            view.frame.origin.y = -getKeyboardHeight(notification)
         }
     }
     
@@ -175,7 +177,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
     @IBAction func cancelButtonPressed(_ sender: AnyObject) {
         // Set share button as disabled:
         showShareButton(false)
-        
+        /*
         if let topResults = topTextField.text {
             if topResults != "TOP" {
                 topTextField.text = "TOP"
@@ -186,6 +188,7 @@ class MemeViewController: UIViewController, UIImagePickerControllerDelegate, UIN
                 bottomTextField.text = "BOTTOM"
             }
         }
+         */
         // Discard any image in imageView:
         imageView.image = nil
         
